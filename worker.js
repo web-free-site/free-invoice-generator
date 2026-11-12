@@ -1,14 +1,25 @@
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
-    let response = await env.ASSETS.fetch(request)
+    const path = url.pathname
+    const looksLikeFile = /\.[a-zA-Z0-9]{1,8}$/.test(path)
 
-    if (response.status === 404 && !url.pathname.includes('.')) {
-      const slashPath = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`
-      const nested = await env.ASSETS.fetch(new Request(new URL(`${slashPath}index.html`, url.origin), request))
-      if (nested.status !== 404) return nested
-      response = await env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request))
+    const asset = (pathname) => env.ASSETS.fetch(new Request(new URL(pathname, url.origin), request))
+
+    if (!looksLikeFile) {
+      const candidates = path.endsWith('/')
+        ? [`${path}index.html`]
+        : [`${path}/index.html`, `${path}.html`]
+
+      for (const candidate of candidates) {
+        const res = await asset(candidate)
+        if (res.status === 200) return res
+      }
+
+      const spa = await asset('/index.html')
+      if (spa.status === 200) return spa
     }
-    return response
+
+    return asset(path)
   },
 }

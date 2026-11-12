@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Locale } from '../i18n/messages'
 import { SITE } from '../site'
+import { AdSlot } from '../components/ads/AdSlot'
 
 interface Props {
   locale: Locale
@@ -45,6 +46,7 @@ export const LegalPage: FC<Props> = ({ kind }) => {
       {c.body.map((p, i) => (
         <p key={i}>{p}</p>
       ))}
+      <AdSlot slot="content300x250" className="ad-content" />
     </article>
   )
 }

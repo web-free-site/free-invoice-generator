@@ -24,7 +24,7 @@ function App() {
   }
 
   return (
-    <Layout locale={locale} onLocale={setLocale} showHomeBanner={location.pathname === '/' || location.pathname === '/fr'}>
+    <Layout locale={locale} onLocale={setLocale} showHomeBanner={location.pathname === '/' || location.pathname === '/fr' || location.pathname === '/fr/facture-gratuite'}>
       <RouteMeta />
       <Routes>
         <Route path="/" element={<HomePage locale="en" seoPath="/" docType="invoice" />} />

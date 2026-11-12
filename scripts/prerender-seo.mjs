@@ -47,14 +47,20 @@ function buildPage(page) {
   html = html.replace(/<html lang="[^"]*"/, `<html lang="${page.locale}"`)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${page.title}</title>`)
   html = html.replace(
-    /<meta name="description" content="[^"]*"\/>/,
-    `<meta name="description" content="${page.description}"/>`,
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
+    `<meta name="description" content="${page.description}" />`,
   )
   if (!html.includes('rel="canonical"')) {
-    html = html.replace('</head>', `<link rel="canonical" href="${url}"/></head>`)
+    html = html.replace('</head>', `    <link rel="canonical" href="${url}" />\n  </head>`)
   } else {
-    html = html.replace(/<link rel="canonical" href="[^"]*"\/>/, `<link rel="canonical" href="${url}"/>`)
+    html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
   }
+  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`)
+  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${page.title}" />`)
+  html = html.replace(
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
+    `<meta property="og:description" content="${page.description}" />`,
+  )
   const seoBlock = `<section id="seo-prerender" class="seo-prerender"><h1>${page.h1}</h1>${page.snippet}</section>`
   html = html.replace('<div id="root"></div>', `${seoBlock}<div id="root"></div>`)
   return html

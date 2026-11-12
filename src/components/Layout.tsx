@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Locale, t } from '../i18n/messages'
-import { AdSlot, useAdScripts } from './ads/AdSlot'
+import { AdSlot, SponsoredSmartlink, useAdScripts } from './ads/AdSlot'
 import { SITE } from '../site'
 
 interface Props {
@@ -82,6 +82,7 @@ export const Layout: FC<Props> = ({ locale, onLocale, children, showHomeBanner }
           <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
         </p>
         <p className="muted">{t(locale, 'savedLocally')}</p>
+        <SponsoredSmartlink />
       </footer>
       <div id="ad-social-bar-root" className="ad-social-root" />
       <div id="ad-popunder-root" className="ad-popunder-root" hidden />

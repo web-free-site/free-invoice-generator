@@ -55,27 +55,9 @@ which equals `npm run build && wrangler deploy`.
 
 ## `public/ads.json` (Adsterra)
 
-Owner fills **non-empty** HTML/script strings. Empty or missing values render nothing.
+Banner units load in isolated iframes from `https://bauval.org/22/<key>` (not highrevenueformat). Popunder, Social Bar, and Native use their absolute script URLs. Set `"enabled": false` to hide all ad UI.
 
-```json
-{
-  "enabled": true,
-  "socialBar": "<!-- Adsterra Social Bar code -->",
-  "popunder": "<!-- Adsterra Popunder script -->",
-  "slots": {
-    "header728x90": "<!-- 728x90 -->",
-    "homeTop728x90": "<!-- homepage top 728x90 -->",
-    "betweenToolContent728x90": "<!-- between tool and article -->",
-    "sidebar160x600": "<!-- desktop sidebar 160x600 -->",
-    "mobileSticky320x50": "<!-- mobile sticky 320x50 -->",
-    "nativeBelowResult": "<!-- native below PDF area -->",
-    "content468x60": "<!-- optional in-article 468x60 -->",
-    "content300x250": "<!-- in-article 300x250 -->"
-  }
-}
-```
-
-Set `"enabled": false` to hide all ad UI even if codes are present.
+Slots on every page: header 728x90, sidebar 160x600, mobile sticky 320x50. Homepage also has a top 728x90. No COEP/COOP headers, and no CSP that would block abscloud.org, bauval.org, or araplhn.org.
 
 ## Pages
 

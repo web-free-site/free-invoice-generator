@@ -210,28 +210,25 @@
 }
 
 .ad-mobile-sticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 40;
-  background: #fff;
-  border-top: 1px solid #ddd;
-  padding: 0.35rem;
-  min-height: 2.75rem;
-  @media (min-width: 901px) {
-    &:not(:has(.ad-slot__body *)) {
-      display: none;
-    }
-  }
+  display: none;
   @media (max-width: 900px) {
     display: block;
-    &::after {
-      content: '';
-      display: block;
-      min-height: 3rem;
-    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 0.35rem;
+    min-height: 2.75rem;
   }
+}
+
+.ad-slot__frame {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
 }
 
 .app h1.center {

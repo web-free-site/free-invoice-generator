@@ -66,6 +66,7 @@ export const HomePage: FC<Props> = ({ locale, docType = 'invoice', vatNone, seoP
         {seo.paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+        <AdSlot slot="content468x60" className="ad-content" />
         <h2>FAQ</h2>
         <dl className="faq">
           {seo.faq.map((item) => (
