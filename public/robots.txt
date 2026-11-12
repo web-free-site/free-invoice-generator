@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://free-invoice-generator.web-free.site/sitemap.xml

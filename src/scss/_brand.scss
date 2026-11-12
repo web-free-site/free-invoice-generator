@@ -1,0 +1,264 @@
+.site {
+  min-height: 100vh;
+  background: linear-gradient(165deg, #f7f3eb 0%, #e8f4f0 45%, #f0ebe3 100%);
+  color: #1a2e28;
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.site-header {
+  background: #0d5c4b;
+  color: #f4e4c1;
+  box-shadow: 0 4px 24px rgba(13, 92, 75, 0.25);
+}
+
+.site-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand__mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: #f4e4c1;
+  color: #0d5c4b;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  small {
+    opacity: 0.85;
+    font-size: 0.75rem;
+    max-width: 16rem;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  align-items: center;
+  a {
+    color: #f4e4c1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.lang-switch {
+  display: flex;
+  gap: 0.35rem;
+  a {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    &.active {
+      background: rgba(244, 228, 193, 0.25);
+    }
+  }
+}
+
+.site-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 1.5rem;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.site-sidebar {
+  @media (max-width: 900px) {
+    display: none;
+  }
+}
+
+.hero {
+  margin-bottom: 1.25rem;
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    color: #0d5c4b;
+    margin: 0 0 0.5rem;
+  }
+  &__lead {
+    margin: 0;
+    color: #3d5a50;
+  }
+}
+
+.doc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid #c5ddd6;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    font-weight: 600;
+    gap: 0.25rem;
+  }
+  select,
+  input {
+    font: inherit;
+    padding: 0.35rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #b8cdc6;
+    min-width: 8rem;
+  }
+}
+
+.editor-shell {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #c5ddd6;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(26, 46, 40, 0.08);
+}
+
+.content-article {
+  margin-top: 2rem;
+  max-width: 42rem;
+  line-height: 1.65;
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    color: #0d5c4b;
+  }
+}
+
+.faq {
+  div {
+    margin-bottom: 1rem;
+  }
+  dt {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  dd {
+    margin: 0;
+    color: #3d5a50;
+  }
+}
+
+.site-footer {
+  background: #1a2e28;
+  color: #c5ddd6;
+  text-align: center;
+  padding: 1.5rem 1rem 4.5rem;
+  font-size: 0.9rem;
+  a {
+    color: #f4e4c1;
+  }
+  .muted {
+    opacity: 0.75;
+    font-size: 0.8rem;
+  }
+}
+
+.ad-slot {
+  text-align: center;
+  &__label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.6;
+    margin-bottom: 0.25rem;
+  }
+  &__body:empty {
+    display: none;
+  }
+}
+
+.ad-header,
+.ad-home-top,
+.ad-between {
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.ad-mobile-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 0.35rem;
+  min-height: 2.75rem;
+  @media (min-width: 901px) {
+    &:not(:has(.ad-slot__body *)) {
+      display: none;
+    }
+  }
+  @media (max-width: 900px) {
+    display: block;
+    &::after {
+      content: '';
+      display: block;
+      min-height: 3rem;
+    }
+  }
+}
+
+.app h1.center {
+  display: none;
+}
+
+.seo-prerender {
+  max-width: 42rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  color: #3d5a50;
+  h1 {
+    font-size: 1.25rem;
+    color: #0d5c4b;
+  }
+}
+
+#root:not(:empty) + .seo-prerender,
+#root:not(:empty) ~ .seo-prerender {
+  display: none;
+}
+
+.invoice-wrapper {
+  border-color: #0d5c4b !important;
+}
+
+.bg-dark {
+  background: #0d5c4b !important;
+}

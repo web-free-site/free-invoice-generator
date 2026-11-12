@@ -1,0 +1,15 @@
+name = "free-invoice-generator"
+account_id = "c26dbba499d049a1051c152c720cf4c5"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+[[routes]]
+pattern = "free-invoice-generator.web-free.site"
+custom_domain = true

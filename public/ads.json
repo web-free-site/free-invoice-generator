@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "socialBar": "",
+  "popunder": "",
+  "slots": {
+    "header728x90": "",
+    "homeTop728x90": "",
+    "betweenToolContent728x90": "",
+    "sidebar160x600": "",
+    "mobileSticky320x50": "",
+    "nativeBelowResult": "",
+    "content468x60": "",
+    "content300x250": ""
+  }
+}
