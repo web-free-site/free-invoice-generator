@@ -2,7 +2,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const HOST = 'https://free-invoice-generator.web-free.site'
-const paths = ['/', '/fr/facture-gratuite', '/quote-generator', '/receipt-generator', '/invoice-template-no-vat', '/privacy', '/terms', '/about', '/contact']
+const paths = [
+  "/how-to-create-an-invoice-without-excel",
+  "/what-to-include-on-an-invoice",'/', '/fr/facture-gratuite', '/quote-generator', '/receipt-generator', '/invoice-template-no-vat', '/privacy', '/terms', '/about', '/contact']
 
 const urls = paths
   .map(
