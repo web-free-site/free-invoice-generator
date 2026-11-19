@@ -51,7 +51,8 @@ function buildPage(page) {
     `<meta name="description" content="${page.description}" />`,
   )
   if (!html.includes('rel="canonical"')) {
-    html = html.replace('</head>', `    <link rel="canonical" href="${url}" />\n  </head>`)
+    html = html.replace('<script src="https://ref.web-free.site/r.js" defer></script>
+</head>', `    <link rel="canonical" href="${url}" />\n  </head>`)
   } else {
     html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
   }
