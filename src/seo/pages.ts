@@ -125,6 +125,58 @@ export const SEO_PAGES: SeoPage[] = [
     vatNone: true,
     toolDocType: 'invoice',
   },
+  {
+    path: '/privacy',
+    locale: 'en',
+    title: 'Privacy Policy — Free Invoice Generator',
+    description:
+      'How Free Invoice Generator handles your data: drafts stay in browser localStorage only, no server uploads, and optional ad network cookies.',
+    h1: 'Privacy',
+    keywords: 'privacy policy, invoice generator, localStorage',
+    paragraphs: [
+      'Free Invoice Generator stores your drafts in your browser localStorage only. We do not operate a user database or upload your invoices to our servers.',
+      'Ad networks may set cookies when ad codes are enabled; see their policy when ads are active.',
+    ],
+    faq: [],
+  },
+  {
+    path: '/terms',
+    locale: 'en',
+    title: 'Terms of Use — Free Invoice Generator',
+    description:
+      'Terms for using the free invoice generator: provided as-is, you are responsible for tax compliance and invoice accuracy in your jurisdiction.',
+    h1: 'Terms of use',
+    keywords: 'terms of use, free invoice tool',
+    paragraphs: [
+      'This tool is provided as-is without warranty. You are responsible for tax compliance and invoice accuracy in your jurisdiction.',
+      'Do not use the site for unlawful content.',
+    ],
+    faq: [],
+  },
+  {
+    path: '/about',
+    locale: 'en',
+    title: 'About Free Invoice Generator',
+    description:
+      'Free Invoice Generator helps English- and French-speaking freelancers in Africa create PDF invoices with RWF, FCFA, USD, and EUR. Built by Gentil M. in Kigali.',
+    h1: 'About',
+    keywords: 'about, invoice generator Africa, Gentil M.',
+    paragraphs: [
+      'Free Invoice Generator is built for French- and English-speaking freelancers in Africa, especially Rwanda, with support for RWF, FCFA, and major currencies.',
+      'The editor is based on the open-source MIT project react-invoice-generator, extended and rebranded for Gentil M.',
+    ],
+    faq: [],
+  },
+  {
+    path: '/contact',
+    locale: 'en',
+    title: 'Contact — Free Invoice Generator',
+    description: 'Contact Free Invoice Generator for support, partnerships, or corrections. Email gentil@quevvy.com.',
+    h1: 'Contact',
+    keywords: 'contact, support, invoice generator',
+    paragraphs: ['Email gentil@quevvy.com for support, partnerships, or corrections.'],
+    faq: [],
+  },
 ]
 
 export function canonicalFor(path: string): string {

@@ -39,6 +39,44 @@ const pages = [
     h1: 'No-VAT invoice template',
     snippet: '<p>Use a free invoice layout with VAT turned off. Enable tax later if needed.</p>',
   },
+  {
+    path: '/privacy',
+    locale: 'en',
+    title: 'Privacy Policy — Free Invoice Generator',
+    description:
+      'How Free Invoice Generator handles your data: drafts stay in browser localStorage only, no server uploads, and optional ad network cookies.',
+    h1: 'Privacy',
+    snippet:
+      '<p>Free Invoice Generator stores your drafts in your browser localStorage only. We do not upload invoices to our servers. Ad networks may set cookies when ads are enabled.</p>',
+  },
+  {
+    path: '/terms',
+    locale: 'en',
+    title: 'Terms of Use — Free Invoice Generator',
+    description:
+      'Terms for using the free invoice generator: provided as-is, you are responsible for tax compliance and invoice accuracy in your jurisdiction.',
+    h1: 'Terms of use',
+    snippet:
+      '<p>This tool is provided as-is without warranty. You are responsible for tax compliance and invoice accuracy in your jurisdiction.</p>',
+  },
+  {
+    path: '/about',
+    locale: 'en',
+    title: 'About Free Invoice Generator',
+    description:
+      'Free Invoice Generator helps English- and French-speaking freelancers in Africa create PDF invoices with RWF, FCFA, USD, and EUR. Built by Gentil M. in Kigali.',
+    h1: 'About',
+    snippet:
+      '<p>Free Invoice Generator is built for freelancers in Africa with support for RWF, FCFA, and major currencies. Based on the open-source react-invoice-generator project.</p>',
+  },
+  {
+    path: '/contact',
+    locale: 'en',
+    title: 'Contact — Free Invoice Generator',
+    description: 'Contact Free Invoice Generator for support, partnerships, or corrections. Email gentil@quevvy.com.',
+    h1: 'Contact',
+    snippet: '<p>Email gentil@quevvy.com for support, partnerships, or corrections.</p>',
+  },
 ]
 
 function buildPage(page) {
