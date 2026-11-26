@@ -66,8 +66,37 @@ export const HomePage: FC<Props> = ({ locale, docType = 'invoice', vatNone, seoP
         {seo.paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+        {seo.sections?.map((section) => (
+          <section key={section.h2}>
+            <h2>{section.h2}</h2>
+            {section.paragraphs?.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+            {section.steps ? (
+              <ol>
+                {section.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            ) : null}
+          </section>
+        ))}
+        {seo.hubLinks && seo.hubLinks.length > 0 ? (
+          <p className="content-article__hub">
+            More utilities:{' '}
+            {seo.hubLinks.map((link, i) => (
+              <span key={link.href}>
+                {i > 0 ? '; ' : null}
+                <a href={link.href} rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              </span>
+            ))}
+            .
+          </p>
+        ) : null}
         <AdSlot slot="content468x60" className="ad-content" />
-        <h2>FAQ</h2>
+        <h2>Frequently asked questions</h2>
         <dl className="faq">
           {seo.faq.map((item) => (
             <div key={item.q}>

@@ -157,6 +157,16 @@
     font-family: 'Fraunces', Georgia, serif;
     color: #0d5c4b;
   }
+  ol {
+    padding-left: 1.25rem;
+    margin: 0.75rem 0 1rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+  }
+  &__hub a {
+    color: #0b57d0;
+  }
 }
 
 .faq {

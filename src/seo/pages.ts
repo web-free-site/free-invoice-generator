@@ -8,6 +8,8 @@ export interface SeoPage {
   h1: string
   keywords: string
   paragraphs: string[]
+  sections?: { h2: string; paragraphs?: string[]; steps?: string[] }[]
+  hubLinks?: { href: string; label: string }[]
   faq: { q: string; a: string }[]
   toolDocType?: 'invoice' | 'quote' | 'receipt'
   vatNone?: boolean
@@ -17,28 +19,72 @@ export const SEO_PAGES: SeoPage[] = [
   {
     path: '/',
     locale: 'en',
-    title: 'Free Invoice Generator — PDF invoices for Africa | No sign-up',
+    title: 'Free Invoice Generator — PDF Invoices, Quotes & Receipts | No Sign-up',
     description:
-      'Create free professional invoices, quotes, and receipts in your browser. RWF, FCFA, USD, EUR. VAT optional. PDF download. Data stays on your device.',
-    h1: 'Free Invoice Generator for freelancers and small businesses',
+      'Free Invoice Generator creates professional PDF invoices in your browser. Add line items, VAT, your logo, and RWF, FCFA, USD, or EUR. No account—data stays on your device.',
+    h1: 'Free Invoice Generator',
     keywords: 'free invoice generator, invoice PDF, Africa freelancer, RWF invoice',
     paragraphs: [
-      'Free Invoice Generator helps freelancers and small businesses in Rwanda, the DRC, and across Francophone Africa issue clear invoices without creating an account. Everything runs in your browser: line items, optional VAT, discounts, your logo, and instant PDF export.',
-      'Pick Rwandan francs, Congolese francs, West or Central African FCFA, US dollars, or euros. Toggle VAT off when you need a simple receipt or a no-VAT template. Your draft is stored only in localStorage on your device — we never see your client data.',
-      'Built for speed on mobile networks: lightweight, no backend, no tracking login. Download or print a PDF, send it by WhatsApp or email, and get paid faster.',
+      'Free Invoice Generator is a browser-based tool for freelancers, consultants, shop owners, and small businesses who need a clear, professional invoice without installing accounting software or paying for a subscription. You fill in your business details, your client’s name, line items, quantities, and rates, then export a print-ready PDF in one session.',
+      'The editor supports invoices, quotes, and receipts from the same screen. You can show or hide VAT, apply a discount, upload your logo, and switch currency symbols so totals look familiar to clients in Kigali, Kinshasa, Lagos, Dakar, Nairobi, or abroad. Everything is formatted for readable PDF output you can attach to email, send on WhatsApp, or print for your records.',
+      'This site is part of the Web Free collection of utilities that run entirely in your tab. There is no registration wall, no per-invoice fee, and no requirement to store client lists on someone else’s server.',
+    ],
+    sections: [
+      {
+        h2: 'How to use the Free Invoice Generator',
+        paragraphs: [
+          'Open the editor above on a phone, tablet, or desktop. You do not need to download an app. When you first visit, a sample invoice may appear so you can see how fields map to the PDF; replace every line with your own data before sending anything to a client.',
+        ],
+        steps: [
+          'Set the document type (Invoice, Quote, or Receipt) and choose your currency—for example RWF, West or Central African FCFA, USD, or EUR.',
+          'Enter your business name, address, and contact details in the header, then add the client’s billing information.',
+          'Add line items with a short description, quantity, and unit price. The tool calculates subtotals, optional VAT, discounts, and the grand total automatically.',
+          'Upload a logo if you have one, adjust the invoice number and dates, and double-check tax settings match your local rules.',
+          'Click Download PDF (or use your browser print dialog) and save the file. Share it with your client and keep a copy for your books.',
+        ],
+      },
+      {
+        h2: 'Privacy and in-browser processing',
+        paragraphs: [
+          'Your draft invoice is saved in your browser’s local storage on the device you are using. It is not uploaded to our servers as part of normal editing, and we do not operate a database of your clients or line items. If you clear site data or use a private window without saving the PDF elsewhere, the draft disappears—so download or back up important invoices when you are done.',
+          'Generating the PDF happens in your browser using client-side rendering. That keeps typical invoicing workflows fast on mobile networks and avoids handing financial details to a third-party upload form. You remain responsible for tax compliance, correct totals, and lawful content on the documents you issue; the tool is provided as-is to help you format and export them quickly.',
+        ],
+      },
+      {
+        h2: 'Common use cases',
+        paragraphs: [
+          'Freelance designers, developers, and translators use Free Invoice Generator to bill one-off projects and retainers when a full ERP system would be overkill. Market vendors and repair shops issue simple receipts after cash sales. Nonprofits and associations sometimes need a standardized PDF for grants or member services. Remote teams working across countries pick a currency that matches the payer while keeping descriptions in English.',
+          'If you already know what belongs on an invoice but want a step-by-step walkthrough with African currency examples, read the companion guide on Web Free. For field-level tips without spreadsheets, see the short guides linked in the footer of this site.',
+        ],
+      },
+    ],
+    hubLinks: [
+      { href: 'https://web-free.site/?ref=free-invoice-generator', label: 'browse all free browser tools on Web Free' },
+      {
+        href: 'https://web-free.site/guides/create-invoice-pdf-rwf-fcfa-free/?ref=free-invoice-generator',
+        label: 'how to create an invoice PDF with RWF, FCFA, or USD',
+      },
     ],
     faq: [
       {
         q: 'Is this invoice generator really free?',
-        a: 'Yes. There is no subscription and no account. You can create and download PDFs for free.',
+        a: 'Yes. There is no subscription, no per-document fee, and no account required. You can create and download PDF invoices, quotes, and receipts for free.',
       },
       {
         q: 'Where is my invoice data stored?',
-        a: 'Only in your browser localStorage. Clear site data to remove it.',
+        a: 'Only in your browser’s local storage on your device. We do not store your drafts on our servers. Clear site data in your browser settings to remove saved invoices.',
       },
       {
-        q: 'Which currencies are supported?',
-        a: 'RWF, CDF (FC), XOF/XAF (FCFA), USD, and EUR.',
+        q: 'Which currencies does the Free Invoice Generator support?',
+        a: 'You can format amounts in Rwandan francs (RWF), Congolese francs (CDF), West and Central African CFA francs (XOF/XAF), US dollars (USD), and euros (EUR).',
+      },
+      {
+        q: 'Do I need to install software or sign up?',
+        a: 'No. The tool runs in a modern web browser on desktop or mobile. Open the page, edit the invoice, and download a PDF without installing apps or creating a login.',
+      },
+      {
+        q: 'Can I make quotes and receipts with the same tool?',
+        a: 'Yes. Change the document type in the toolbar to Quote or Receipt. Line items, totals, and PDF export work the same way; only the document title and wording change.',
       },
     ],
     toolDocType: 'invoice',
