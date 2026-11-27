@@ -1,9 +1,26 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { SEO_PAGES } from '../src/seo/pages'
+import { renderHomeStaticHtml } from '../src/seo/renderStaticHtml'
+import { messages } from '../src/i18n/messages'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const HOST = 'https://free-invoice-generator.web-free.site'
-const dist = path.resolve('dist')
+const dist = path.resolve(__dirname, '..', 'dist')
 const baseHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
+
+function escAttr(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+}
+
+function escText(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
 
 const pages = [
   {
@@ -79,14 +96,14 @@ const pages = [
   },
 ]
 
-function buildPage(page) {
+function buildPage(page: (typeof pages)[number]) {
   const url = HOST + page.path
   let html = baseHtml
   html = html.replace(/<html lang="[^"]*"/, `<html lang="${page.locale}"`)
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${page.title}</title>`)
   html = html.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="description" content="${page.description}" />`,
+    `<meta name="description" content="${escAttr(page.description)}" />`,
   )
   if (!html.includes('rel="canonical"')) {
     html = html.replace('</head>', `    <link rel="canonical" href="${url}" />\n  </head>`)
@@ -94,12 +111,12 @@ function buildPage(page) {
     html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`)
   }
   html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`)
-  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${page.title}" />`)
+  html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${escAttr(page.title)}" />`)
   html = html.replace(
     /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:description" content="${page.description}" />`,
+    `<meta property="og:description" content="${escAttr(page.description)}" />`,
   )
-  const seoBlock = `<section id="seo-prerender" class="seo-prerender"><h1>${page.h1}</h1>${page.snippet}</section>`
+  const seoBlock = `<section id="seo-prerender" class="seo-prerender"><h1>${escText(page.h1)}</h1>${page.snippet}</section>`
   html = html.replace('<div id="root"></div>', `${seoBlock}<div id="root"></div>`)
   return html
 }
@@ -110,4 +127,30 @@ for (const page of pages) {
   fs.writeFileSync(path.join(dir, 'index.html'), buildPage(page))
 }
 
-console.log('Prerendered', pages.length, 'route shells from Vite index.html')
+const home = SEO_PAGES.find((p) => p.path === '/')
+if (!home) throw new Error('Home SEO page missing')
+let homeHtml = baseHtml
+const rootInner = renderHomeStaticHtml(home, messages.en.tagline)
+homeHtml = homeHtml.replace('<div id="root"></div>', `<div id="root">\n${rootInner}\n</div>`)
+
+if (!homeHtml.includes('FAQPage')) {
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: home.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+  homeHtml = homeHtml.replace('</head>', `    <script type="application/ld+json">${JSON.stringify(faqLd)}</script>\n  </head>`)
+}
+
+const h1Count = (homeHtml.match(/<h1\b/gi) || []).length
+if (h1Count !== 1) {
+  throw new Error(`dist/index.html must contain exactly one <h1>, found ${h1Count}`)
+}
+
+fs.writeFileSync(path.join(dist, 'index.html'), homeHtml)
+
+console.log('Prerendered', pages.length, 'route shells and injected homepage static SEO into dist/index.html')
